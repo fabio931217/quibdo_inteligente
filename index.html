@@ -7,9 +7,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="dist/css/css.css" type="text/css">
   
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link href="dist/css/icon.css" rel="stylesheet">
   <!-- Bootstrap Material Design -->
   <link href="dist/css/bootstrap-material-design.css" rel="stylesheet">
   <link href="dist/css/ripples.min.css" rel="stylesheet">
@@ -21,7 +22,7 @@
   <script src="dist/js/jquery-1.10.2.min.js"></script>
 
     <!-- Bootstrap -->
-  <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="dist/css/bootstrap.css" rel="stylesheet">
   <script src="dist/js/bootstrap.min.js"></script>
   <script src="dist/js/ripples.min.js"></script>
   <script src="dist/js/material.min.js"></script>
@@ -45,14 +46,14 @@
 <div class="container-fluid" id="informacion_publicaciones">
     <div class="row">
       <div class="col-xs-12" style="padding:0px">
-          <div class="panel panel-primary" style="border-color: white">
+          <div class="panel panel-primary" style="border-color: #009688;border-radius: 0px;">
             <div class="panel-heading" style="height:40px;top: 0px;position: fixed;z-index: 1;width: 100%;">
-              <div class="col-xs-1" style="padding:0px" onclick="atras()"><i class="material-icons">reply_all</i>
+              <div class="col-xs-1" style="padding:0px" onclick="atras()"><img src="img/atras.png" style="width:100%">
               </div>
               <div class="col-xs-10" style="padding-top:2px;padding-left:10px;padding-right:5px;">
                 <h3 class="panel-title">Titulo noticia</h3>
               </div>
-              <div class="col-xs-1" style="padding:0px" data-toggle="modal" data-target="#simple-dialog"><i class="material-icons">comment</i>
+              <div class="col-xs-1" style="padding:0px" data-toggle="modal" data-target="#simple-dialog"><img src="img/comentario.png" style="width:100%">
               </div>
             </div>
             <div class="panel-body"><br><br>
@@ -71,7 +72,54 @@
   
   <div class="list-group-item">
     <div class="row-content">
-      <div class="action-secondary"><i class="material-icons">info</i></div>
+      <div class="action-secondary"></div>
+      <h4 class="list-group-item-heading">Anonimo</h4>
+
+      <p class="list-group-item-text">And <b>without avatar</b> on left.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+
+    <div class="list-group-item">
+    <div class="row-content">
+      <div class="action-secondary"></div>
+      <h4 class="list-group-item-heading">Anonimo</h4>
+
+      <p class="list-group-item-text">And <b>without avatar</b> on left.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+
+    <div class="list-group-item">
+    <div class="row-content">
+      <div class="action-secondary"></div>
+      <h4 class="list-group-item-heading">Anonimo</h4>
+
+      <p class="list-group-item-text">And <b>without avatar</b> on left.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+    <div class="list-group-item">
+    <div class="row-content">
+      <div class="action-secondary"></div>
+      <h4 class="list-group-item-heading">Anonimo</h4>
+
+      <p class="list-group-item-text">And <b>without avatar</b> on left.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+    <div class="list-group-item">
+    <div class="row-content">
+      <div class="action-secondary"></div>
+      <h4 class="list-group-item-heading">Anonimo</h4>
+
+      <p class="list-group-item-text">And <b>without avatar</b> on left.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+    <div class="list-group-item">
+    <div class="row-content">
+      <div class="action-secondary"></div>
       <h4 class="list-group-item-heading">Anonimo</h4>
 
       <p class="list-group-item-text">And <b>without avatar</b> on left.</p>
@@ -88,7 +136,7 @@
 </div>
 
 
-<div class="header-panel shadow-z-2" id="menu">
+<div class="header-panel shadow-z-2" id="menu" >
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12" style="padding:0px">
@@ -102,7 +150,7 @@
   <li><a href="#contactanos" data-toggle="tab">Contactanos</a></li>
   <li><a href="#consultar" data-toggle="tab">Consultar</a></li>
 </ul>
-<div id="myTabContent" class="tab-content">
+<div id="myTabContent" class="tab-content" style="border-color: #009688;border-radius: 0px;">
 
 
 
@@ -123,7 +171,7 @@
   </div>
   <div class="list-group-separator"></div>
 
-  <div class="list-group-item">
+  <div class="list-group-item" onclick="ver(1)">
     <div class="row-action-primary">
       <img src="img/prueba.jpg">
     </div>
@@ -135,6 +183,129 @@
     </div>
   </div>
   <div class="list-group-separator"></div>
+
+   <div class="list-group-item" onclick="ver(1)">
+    <div class="row-action-primary">
+      <img src="img/prueba.jpg">
+    </div>
+    <div class="row-content">
+      <div class="least-content">15m</div>
+      <h4 class="list-group-item-heading">Tile with a label</h4>
+
+      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+
+   <div class="list-group-item" onclick="ver(1)">
+    <div class="row-action-primary">
+      <img src="img/prueba.jpg">
+    </div>
+    <div class="row-content">
+      <div class="least-content">15m</div>
+      <h4 class="list-group-item-heading">Tile with a label</h4>
+
+      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+
+    <div class="list-group-item" onclick="ver(1)">
+    <div class="row-action-primary">
+      <img src="img/prueba.jpg">
+    </div>
+    <div class="row-content">
+      <div class="least-content">15m</div>
+      <h4 class="list-group-item-heading">Tile with a label</h4>
+
+      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+
+    <div class="list-group-item" onclick="ver(1)">
+    <div class="row-action-primary">
+      <img src="img/prueba.jpg">
+    </div>
+    <div class="row-content">
+      <div class="least-content">15m</div>
+      <h4 class="list-group-item-heading">Tile with a label</h4>
+
+      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+
+    <div class="list-group-item" onclick="ver(1)">
+    <div class="row-action-primary">
+      <img src="img/prueba.jpg">
+    </div>
+    <div class="row-content">
+      <div class="least-content">15m</div>
+      <h4 class="list-group-item-heading">Tile with a label</h4>
+
+      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+
+    <div class="list-group-item" onclick="ver(1)">
+    <div class="row-action-primary">
+      <img src="img/prueba.jpg">
+    </div>
+    <div class="row-content">
+      <div class="least-content">15m</div>
+      <h4 class="list-group-item-heading">Tile with a label</h4>
+
+      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+
+    <div class="list-group-item" onclick="ver(1)">
+    <div class="row-action-primary">
+      <img src="img/prueba.jpg">
+    </div>
+    <div class="row-content">
+      <div class="least-content">15m</div>
+      <h4 class="list-group-item-heading">Tile with a label</h4>
+
+      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+
+    <div class="list-group-item" onclick="ver(1)">
+    <div class="row-action-primary">
+      <img src="img/prueba.jpg">
+    </div>
+    <div class="row-content">
+      <div class="least-content">15m</div>
+      <h4 class="list-group-item-heading">Tile with a label</h4>
+
+      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+
+
+    <div class="list-group-item" onclick="ver(1)">
+    <div class="row-action-primary">
+      <img src="img/prueba.jpg">
+    </div>
+    <div class="row-content">
+      <div class="least-content">15m</div>
+      <h4 class="list-group-item-heading">Tile with a label</h4>
+
+      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
+    </div>
+  </div>
+  <div class="list-group-separator"></div>
+  
+
+
+
+
 
 
 
@@ -149,10 +320,7 @@
           
            <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Categoria</label>
-            <select class="form-control" required>
-              <option>XXX</option>
-              <option>YYY</option>
-            </select>
+            <select class="form-control" required></select>
           <p class="help-block">Seleccione una categoria</p>
           </div>
 
@@ -219,6 +387,38 @@
   </div>
 
 
+    <div class="tab-pane fade" id="consultar">
+      <div class="col-xs-12" style="padding:30px">
+         <form class="form-horizontal">         
+
+           <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Categoria</label>
+            <select class="form-control" required></select>
+          <p class="help-block">Seleccione una categoria</p>
+          </div>
+
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2"></label>
+           <input class="form-control" type="date">
+          <p class="help-block">Ingresa la fecha inicial de la consulta.</p>
+          </div>
+
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2"></label>
+           <input class="form-control" type="date">
+          <p class="help-block">Ingresa la fecha final de la consulta.</p>
+          </div> 
+
+            <div class="col-xs-8"></div>
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-raised btn-success">Buscar</button>
+            </div>
+             
+         </form>
+      </div>
+  </div>
+
+
 
 
 </div>
@@ -241,7 +441,7 @@
         
         <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Comentario</label>
-           <textarea class="form-control" required style="height:180px"></textarea>
+           <textarea class="form-control" required style="height:160px"></textarea>
           <p class="help-block">Da tu opinion.</p>
         </div>
 
