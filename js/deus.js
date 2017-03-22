@@ -3,7 +3,21 @@ var PLUGINS_ID;
 var PLUGINS_URL;
 var BASE_URL ="http://smartquibdo.sigtics.org/services/";
 var TOKEN = 'HYT6&/_AB$K+]XxN2rm';
-function Get_Ajax(urlSnd,datos,opt,cb){
+function msg(cont,texto,tipo){
+	$('.textomsg',cont).html(texto);
+	$(cont).addClass('alert');
+	if(tipo=='error'){
+		$(cont).addClass('alert-warning');
+	}else if(tipo=='complete'){
+		$(cont).addClass('alert-success');	
+	}
+	$(cont).show();
+	$(cont).fadeIn(1000).delay(1500).fadeOut(1500);
+	//var top = $(cont).position().top  + 500;
+	//$(window).scrollTop(top);
+}
+
+function Ajax(urlSnd,datos,opt,cb){
 	var URLSEND = BASE_URL+urlSnd;
 	if(!datos){datos = {};}
 	if(opt=='AllUrl'){	URLSEND = urlSnd; }
@@ -14,41 +28,20 @@ function Get_Ajax(urlSnd,datos,opt,cb){
 		type: "POST",
 		dataType: 'json',
 		data: datos,
-		success: function(msg){
-			cb(msg);
-		}
-	});		
-}
-function Set_Ajax(urlSnd,datos,opt,cb){
-	var URLSEND = BASE_URL+urlSnd;
-	if(!datos){datos = {};}
-	if(opt=='AllUrl'){	URLSEND = urlSnd; }
-	$.ajax({
-		url: URLSEND,
-		type: "POST",
-		dataType: 'json',
-		data: datos,
-		success: function(msg){
-			cb(msg);
-		}
+		beforeSend: function(){
+			$(".cargar").show();
+        },
+		success: function(r){
+			$(".cargar").hide();
+			cb(r);
+		},
+		error: function(r) {
+			$(".cargar").hide();
+			msg($('.respuesta'),'Error al procesar la informacion','error');
+        }
 	});		
 }
 
-
-
-function msg(cont,texto,tipo){
-	$('.textomsg',cont).html(texto);
-	$(cont).addClass('alert');
-	if(tipo=='error'){
-		$(cont).addClass('alert-warning');
-	}else if(tipo=='complete'){
-		$(cont).addClass('alert-success');	
-	}
-	
-	$(cont).fadeIn(1000).delay(1500).fadeOut(1000);
-	var top = $(cont).position().top  + 500;
-	$(window).scrollTop(top);
-}
 
 
 function getUrlVars() {

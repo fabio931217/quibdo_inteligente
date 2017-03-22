@@ -9,7 +9,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="dist/css/css.css" type="text/css">
   
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   <link href="dist/css/icon.css" rel="stylesheet">
   <!-- Bootstrap Material Design -->
   <link href="dist/css/bootstrap-material-design.css" rel="stylesheet">
@@ -38,6 +39,42 @@
      div{
       border:none;
      }
+     a{
+      color: white;
+     }
+     .breadcrumb {
+        padding: 8px 15px;
+        margin-bottom: 0px !important;
+        margin-top: 42px !important;
+        list-style: none;
+        background-color: #f5f5f5;
+        border-radius: 0px !important;
+
+     }
+     .nav-tabs > li > a:focus {
+         background-color: rgba(53, 169, 159, 0.46) !important;
+         border: 0 !important;
+         color: #FFFFFF !important;
+         font-weight: 500;
+     }
+     .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+         background-color: rgba(172, 196, 194, 0.43) !important ;
+         border: 0 !important;
+         color: #FFFFFF !important;
+         font-weight: 500;
+         border-radius: 0px !important;
+     }
+     .respuesta{
+      height: 40px;
+      margin-top: 80px !important;
+     }
+     .cargar{
+
+      margin-top: 10px !important;
+      text-align: center;
+
+     }
+     
    </style>
 
 
@@ -59,7 +96,10 @@
               </div>
             </div>
             <div class="panel-body"><br><br>
-               <div class="col-xs-12" style="padding:0px" id="recibe_foto">
+              <ul class="breadcrumb" style="margin-top:0px !Important;margin-bottom:5px !Important;border-radius:0px">
+                 <li class="active" id="recibe_fecha" style="font-size:12px"></li>
+              </ul>
+                <div class="col-xs-12" style="padding:0px" id="recibe_foto">
                   
                 </div>
 
@@ -88,10 +128,12 @@
     position: fixed;
     z-index: 1;
     width: 100%;">
-  <li class="active"><a href="#inicio" data-toggle="tab">Inicio</a></li>
-  <li><a href="#publicaciones" data-toggle="tab">Publicar</a></li>
-  <li><a href="#contactanos" data-toggle="tab">Contactanos</a></li>
-  <li><a href="#consultar" data-toggle="tab">Consultar</a></li>
+
+          <li class="active col-xs-3"><a href="#inicio" data-toggle="tab"><i class="material-icons">home</i></a></li>
+          <li class="col-xs-3"><a href="#consultar" data-toggle="tab"><i class="material-icons">search</i></a></li>
+          <li class="col-xs-3"><a href="#publicaciones" data-toggle="tab"><i class="material-icons">info_outline</i></a></li>
+          <li class="col-xs-3"><a href="#contactanos" data-toggle="tab"><i class="material-icons">contact_mail</i></a></li>
+
 </ul>
 <div id="myTabContent" class="tab-content" style="border-color: #009688;border-radius: 0px;">
 
@@ -110,12 +152,15 @@
 
   <!-- PUBLICACIONES -->
   <div class="tab-pane fade" id="publicaciones">
-    <div class="col-xs-12" style="padding:30px">
+     <ul class="breadcrumb" style="margin-top:30px;border-radius:0px">
+         <li class="active">Publicar</li>
+      </ul>
+    <div class="col-xs-12" style="padding:30px;padding-top:0px">
       <form class="form-horizontal">
           
            <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Categoria</label>
-            <select class="form-control" required></select>
+            <select class="form-control categoria" required id="categoriaP" name="categoria"></select>
           <p class="help-block">Seleccione una categoria</p>
           </div>
 
@@ -157,18 +202,21 @@
 
 
   <div class="tab-pane fade" id="contactanos">
-      <div class="col-xs-12" style="padding:30px">
-         <form class="form-horizontal">         
-
+        <ul class="breadcrumb" style="margin-top:30px;border-radius:0px">
+         <li class="active">Contactanos</li>
+        </ul>
+      <div class="col-xs-12" style="padding:30px;padding-top:0px">
+         <form class="form-horizontal" id="frmcontactar">         
+          <input type="hidden" class="token" name="token">
           <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Asunto</label>
-          <input class="form-control" id="focusedInput2" type="text" required>
+          <input class="form-control" id="focusedInput2" name="titulo" type="text" required>
           <p class="help-block">¿Porque nos contactas?</p>
           </div>
 
           <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Descripcion</label>
-           <textarea class="form-control" required style="height:150px"></textarea>
+           <textarea class="form-control" required name="descripcion" style="height:150px"></textarea>
           <p class="help-block">Describenos el motivo.</p>
           </div> 
 
@@ -178,28 +226,34 @@
             </div>
              
          </form>
+         <img src="img/loader.gif" class="cargar">
+         <div class="respuesta" style="margin-top:10px"><i class="textomsg"></i></div>
       </div>
   </div>
 
 
     <div class="tab-pane fade" id="consultar">
-      <div class="col-xs-12" style="padding:30px">
-         <form class="form-horizontal">         
+        <ul class="breadcrumb" style="margin-top:30px;border-radius:0px">
+         <li class="active">Consultar</li>
+        </ul>
+      <div class="col-xs-12" style="padding:30px;padding-top:0px">
 
+         <form class="form-horizontal" id="frmconsultar">         
+           <input type="hidden" class="token" name="token">
            <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Categoria</label>
-            <select class="form-control" required></select>
+           <select class="form-control categoria" required id="categoriaB" name="categoria"></select>
           <p class="help-block">Seleccione una categoria</p>
           </div>
 
           <div class="form-group label-floating">
-          <label class="control-label" for="focusedInput2"></label>
+          <label class="control-label" for="focusedInput2">Fecha inicial</label>
            <input class="form-control" type="date">
           <p class="help-block">Ingresa la fecha inicial de la consulta.</p>
           </div>
 
           <div class="form-group label-floating">
-          <label class="control-label" for="focusedInput2"></label>
+          <label class="control-label" for="focusedInput2">Fecha final</label>
            <input class="form-control" type="date">
           <p class="help-block">Ingresa la fecha final de la consulta.</p>
           </div> 
@@ -210,6 +264,8 @@
             </div>
              
          </form>
+         <img src="img/loader.gif" class="cargar">
+         <div class="respuesta" style="margin-top:10px"><i class="textomsg"></i></div>
       </div>
   </div>
 
@@ -233,18 +289,21 @@
         <h4 class="modal-title">Comentar</h4>
       </div>
       <div class="modal-body">
-        
+        <form id="frmcomentar">
+         <input type="hidden" class="token" name="token">
+         <input type="hidden" id="id_blog" name="id_blog">
         <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Comentario</label>
-           <textarea class="form-control" required style="height:160px"></textarea>
+           <textarea class="form-control" required style="height:160px" name="descripcion"></textarea>
           <p class="help-block">Da tu opinion.</p>
         </div>
-
+        <img src="img/loader.gif" class="cargar">
+        <div class="respuesta" style="margin-top:0px !important; height:auto !Important"><i class="textomsg"></i></div>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-raised btn-success">Aceptar</button>
+        <button type="submit" class="btn btn-raised btn-success">Aceptar</button></form>
       </div>
     </div>
   </div>
@@ -254,34 +313,15 @@
 <script>
   $(function () {
     $.material.init();
+    $(".token").val(TOKEN);
     obtenert_publicaciones();
+    obtener_categorias();
+    contactar();
+    comentar();
+
     $("#informacion_publicaciones").hide();
+    $(".cargar").hide();
     setTimeout(function(){QuitarLoading();}, 1000);
   });
-
-function atras() {
-   $("#informacion_publicaciones").hide();
-   $("#menu").show();
-}
-function ver(id) {
-  var data = {};
-  data.id= id;
-  Get_Ajax('Publicaciones/Informacion_publicacion',data,false,function(data){
-    if(data.res){
-      $("#recibe_comentarios").html(data.dataObj.comentarios);
-      $("#recibe_foto").html(data.dataObj.foto);
-      $("#recibe_contenido").html(data.dataObj.contenido);
-      $("#recibe_titulo").html(data.dataObj.titulo);
-    }else{
-          
-      }
-  })
-
-   $("#informacion_publicaciones").show();
-   $("#menu").hide();
-}
-
-
-
 </script>
 </body>
