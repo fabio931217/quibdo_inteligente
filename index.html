@@ -20,6 +20,8 @@
 
   <!-- jQuery -->
   <script src="dist/js/jquery-1.10.2.min.js"></script>
+  <script src="js/deus.js"></script>
+  <script src="js/funciones.js"></script>
 
     <!-- Bootstrap -->
   <link href="dist/css/bootstrap.css" rel="stylesheet">
@@ -48,85 +50,26 @@
       <div class="col-xs-12" style="padding:0px">
           <div class="panel panel-primary" style="border-color: #009688;border-radius: 0px;">
             <div class="panel-heading" style="height:40px;top: 0px;position: fixed;z-index: 1;width: 100%;">
-              <div class="col-xs-1" style="padding:0px" onclick="atras()"><img src="img/atras.png" style="width:100%">
+              <div class="col-xs-1" style="padding:0px" onclick="atras()"><img src="img/atras.png" style="height:24px">
               </div>
               <div class="col-xs-10" style="padding-top:2px;padding-left:10px;padding-right:5px;">
-                <h3 class="panel-title">Titulo noticia</h3>
+                <h3 class="panel-title" id="recibe_titulo"></h3>
               </div>
-              <div class="col-xs-1" style="padding:0px" data-toggle="modal" data-target="#simple-dialog"><img src="img/comentario.png" style="width:100%">
+              <div class="col-xs-1" style="padding:0px" data-toggle="modal" data-target="#simple-dialog"><img src="img/comentario.png" style="height:24px">
               </div>
             </div>
             <div class="panel-body"><br><br>
-               <div class="col-xs-12" style="padding:0px">
-                  <img src="img/prueba.jpg" style="width: 100%;height: 220px;">
+               <div class="col-xs-12" style="padding:0px" id="recibe_foto">
+                  
                 </div>
 
                  <div class="col-xs-12" style="margin-top:5px;margin-bottom:5px;border-bottom:1px solid #009688" >
                   <p id="recibe_contenido" style="text-align: justify;">
-                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
                   </p>
                 </div>
 
 
-<div class="list-group list-group-no-icon" >
-  
-  <div class="list-group-item">
-    <div class="row-content">
-      <div class="action-secondary"></div>
-      <h4 class="list-group-item-heading">Anonimo</h4>
-
-      <p class="list-group-item-text">And <b>without avatar</b> on left.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-
-    <div class="list-group-item">
-    <div class="row-content">
-      <div class="action-secondary"></div>
-      <h4 class="list-group-item-heading">Anonimo</h4>
-
-      <p class="list-group-item-text">And <b>without avatar</b> on left.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-
-    <div class="list-group-item">
-    <div class="row-content">
-      <div class="action-secondary"></div>
-      <h4 class="list-group-item-heading">Anonimo</h4>
-
-      <p class="list-group-item-text">And <b>without avatar</b> on left.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-    <div class="list-group-item">
-    <div class="row-content">
-      <div class="action-secondary"></div>
-      <h4 class="list-group-item-heading">Anonimo</h4>
-
-      <p class="list-group-item-text">And <b>without avatar</b> on left.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-    <div class="list-group-item">
-    <div class="row-content">
-      <div class="action-secondary"></div>
-      <h4 class="list-group-item-heading">Anonimo</h4>
-
-      <p class="list-group-item-text">And <b>without avatar</b> on left.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-    <div class="list-group-item">
-    <div class="row-content">
-      <div class="action-secondary"></div>
-      <h4 class="list-group-item-heading">Anonimo</h4>
-
-      <p class="list-group-item-text">And <b>without avatar</b> on left.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-
+<div class="list-group list-group-no-icon" id="recibe_comentarios">
 </div>
 
             </div>
@@ -153,163 +96,15 @@
 <div id="myTabContent" class="tab-content" style="border-color: #009688;border-radius: 0px;">
 
 
+ <div class="col-xs-12" style="padding:60px;display:block" id="Dcargando">
+  <img src="img/loader.gif">
+</div>
 
-<div class="tab-pane fade active in" id="inicio">
+<div class="tab-pane fade active in" id="inicio" >
     <br><br><br>
-<div class="list-group">
+<div class="list-group" id="recibe_publicaciones" style="display:none">
 
-  <div class="list-group-item" onclick="ver(1)">
-    <div class="row-action-primary">
-      <img src="img/prueba.jpg">
-    </div>
-    <div class="row-content">
-      <div class="least-content">15m</div>
-      <h4 class="list-group-item-heading">Tile with a label</h4>
-
-      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-
-  <div class="list-group-item" onclick="ver(1)">
-    <div class="row-action-primary">
-      <img src="img/prueba.jpg">
-    </div>
-    <div class="row-content">
-      <div class="least-content">15m</div>
-      <h4 class="list-group-item-heading">Tile with a label</h4>
-
-      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-
-   <div class="list-group-item" onclick="ver(1)">
-    <div class="row-action-primary">
-      <img src="img/prueba.jpg">
-    </div>
-    <div class="row-content">
-      <div class="least-content">15m</div>
-      <h4 class="list-group-item-heading">Tile with a label</h4>
-
-      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-
-   <div class="list-group-item" onclick="ver(1)">
-    <div class="row-action-primary">
-      <img src="img/prueba.jpg">
-    </div>
-    <div class="row-content">
-      <div class="least-content">15m</div>
-      <h4 class="list-group-item-heading">Tile with a label</h4>
-
-      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-
-    <div class="list-group-item" onclick="ver(1)">
-    <div class="row-action-primary">
-      <img src="img/prueba.jpg">
-    </div>
-    <div class="row-content">
-      <div class="least-content">15m</div>
-      <h4 class="list-group-item-heading">Tile with a label</h4>
-
-      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-
-    <div class="list-group-item" onclick="ver(1)">
-    <div class="row-action-primary">
-      <img src="img/prueba.jpg">
-    </div>
-    <div class="row-content">
-      <div class="least-content">15m</div>
-      <h4 class="list-group-item-heading">Tile with a label</h4>
-
-      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-
-    <div class="list-group-item" onclick="ver(1)">
-    <div class="row-action-primary">
-      <img src="img/prueba.jpg">
-    </div>
-    <div class="row-content">
-      <div class="least-content">15m</div>
-      <h4 class="list-group-item-heading">Tile with a label</h4>
-
-      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-
-    <div class="list-group-item" onclick="ver(1)">
-    <div class="row-action-primary">
-      <img src="img/prueba.jpg">
-    </div>
-    <div class="row-content">
-      <div class="least-content">15m</div>
-      <h4 class="list-group-item-heading">Tile with a label</h4>
-
-      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-
-    <div class="list-group-item" onclick="ver(1)">
-    <div class="row-action-primary">
-      <img src="img/prueba.jpg">
-    </div>
-    <div class="row-content">
-      <div class="least-content">15m</div>
-      <h4 class="list-group-item-heading">Tile with a label</h4>
-
-      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-
-    <div class="list-group-item" onclick="ver(1)">
-    <div class="row-action-primary">
-      <img src="img/prueba.jpg">
-    </div>
-    <div class="row-content">
-      <div class="least-content">15m</div>
-      <h4 class="list-group-item-heading">Tile with a label</h4>
-
-      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-
-
-    <div class="list-group-item" onclick="ver(1)">
-    <div class="row-action-primary">
-      <img src="img/prueba.jpg">
-    </div>
-    <div class="row-content">
-      <div class="least-content">15m</div>
-      <h4 class="list-group-item-heading">Tile with a label</h4>
-
-      <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-    </div>
-  </div>
-  <div class="list-group-separator"></div>
-  
-
-
-
-
-
-
-
-  </div>
+</div>
 </div>
 
 
@@ -458,26 +253,11 @@
 
 <script>
   $(function () {
+    
+    obtenert_publicaciones();
+
     $.material.init();
     $("#informacion_publicaciones").hide();
-    $(".shor").noUiSlider({
-      start: 40,
-      connect: "lower",
-      range: {
-        min: 0,
-        max: 100
-      }
-    });
-
-    $(".svert").noUiSlider({
-      orientation: "vertical",
-      start: 40,
-      connect: "lower",
-      range: {
-        min: 0,
-        max: 100
-      }
-    });
   });
 
 function atras() {
@@ -485,6 +265,19 @@ function atras() {
    $("#menu").show();
 }
 function ver(id) {
+  var data = {};
+  data.id= id;
+  Get_Ajax('Publicaciones/Informacion_publicacion',data,false,function(data){
+    if(data.res){
+      $("#recibe_comentarios").html(data.dataObj.comentarios);
+      $("#recibe_foto").html(data.dataObj.foto);
+      $("#recibe_contenido").html(data.dataObj.contenido);
+      $("#recibe_titulo").html(data.dataObj.titulo);
+    }else{
+          
+      }
+  })
+
    $("#informacion_publicaciones").show();
    $("#menu").hide();
 }
