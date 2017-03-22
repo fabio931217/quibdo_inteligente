@@ -5,6 +5,7 @@
 <head>
   <title>Quibdo inteligente</title>
   <meta charset="utf-8">
+  <meta name="theme-color" content="#009688" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="dist/css/css.css" type="text/css">
@@ -74,6 +75,9 @@
       text-align: center;
 
      }
+     .panel{
+      margin-bottom: 0px !important;
+     }
      
    </style>
 
@@ -89,10 +93,8 @@
             <div class="panel-heading" style="height:40px;top: 0px;position: fixed;z-index: 1;width: 100%;">
               <div class="col-xs-1" style="padding:0px" onclick="atras()"><img src="img/atras.png" style="height:24px">
               </div>
-              <div class="col-xs-10" style="padding-top:2px;padding-left:10px;padding-right:5px;">
+              <div class="col-xs-11" style="padding-top:2px;padding-left:10px;padding-right:5px;">
                 <h3 class="panel-title" id="recibe_titulo"></h3>
-              </div>
-              <div class="col-xs-1" style="padding:0px" data-toggle="modal" data-target="#simple-dialog"><img src="img/comentario.png" style="height:24px">
               </div>
             </div>
             <div class="panel-body"><br><br>
@@ -107,10 +109,30 @@
                   <p id="recibe_contenido" style="text-align: justify;">
                   </p>
                 </div>
+                
+                
+                <div class="list-group list-group-no-icon" id="recibe_comentarios">
+                </div>
 
 
-<div class="list-group list-group-no-icon" id="recibe_comentarios">
-</div>
+            </div>
+            <div class="panel-footer">
+      
+       <form id="frmcomentar">
+         <input type="hidden" class="token" name="token">
+         <input type="hidden" id="id_blog" name="id_blog"> 
+          <div class="form-group label-floating is-empty">
+            <label class="control-label" for="addon2">Agrega tu comentario</label>
+            <div class="input-group">
+               <textarea class="form-control" required style="height:50px" name="descripcion"></textarea>
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-fab btn-fab-mini" style="border-radius:100%">
+                  <i class="material-icons">send</i>
+                <div class="ripple-container"></div></button>
+              </span>
+            </div>
+          </div>
+        </form>
 
             </div>
           </div>
@@ -186,8 +208,11 @@
 
           <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Capturar imagen</label>
-           <input class="form-control" id="imagen" Placeholder="Seleccione imagen" capture type="file" accept="image/*" capture>
+             <input type="button" onclick="hacerFoto();"  value="Hacer Foto">
           </div>
+
+            <img id="fotoLocal" src="" width="100px" height="100px">
+            <img id="fotoServidor" src="" width="100px" height="100px">
            
            <div class="col-xs-8"></div>
             <div class="col-xs-4">
@@ -238,23 +263,24 @@
         </ul>
       <div class="col-xs-12" style="padding:30px;padding-top:0px">
 
-         <form class="form-horizontal" id="frmconsultar">         
+         <form class="form-horizontal" id="frmbuscar">         
            <input type="hidden" class="token" name="token">
            <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Categoria</label>
-           <select class="form-control categoria" required id="categoriaB" name="categoria"></select>
+           <select class="form-control categoria" id="categoriaB" name="categoria">
+           </select>
           <p class="help-block">Seleccione una categoria</p>
           </div>
 
           <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Fecha inicial</label>
-           <input class="form-control" type="date">
+           <input class="form-control" type="date" name="fecha_inicial">
           <p class="help-block">Ingresa la fecha inicial de la consulta.</p>
           </div>
 
           <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Fecha final</label>
-           <input class="form-control" type="date">
+           <input class="form-control" type="date" name="fecha_final">
           <p class="help-block">Ingresa la fecha final de la consulta.</p>
           </div> 
 
@@ -264,8 +290,13 @@
             </div>
              
          </form>
+
+         <div id="recibe_consulta"> </div>
+
+
          <img src="img/loader.gif" class="cargar">
          <div class="respuesta" style="margin-top:10px"><i class="textomsg"></i></div>
+
       </div>
   </div>
 
@@ -275,35 +306,6 @@
 </div>
 
 
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="modal" id="simple-dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Comentar</h4>
-      </div>
-      <div class="modal-body">
-        <form id="frmcomentar">
-         <input type="hidden" class="token" name="token">
-         <input type="hidden" id="id_blog" name="id_blog">
-        <div class="form-group label-floating">
-          <label class="control-label" for="focusedInput2">Comentario</label>
-           <textarea class="form-control" required style="height:160px" name="descripcion"></textarea>
-          <p class="help-block">Da tu opinion.</p>
-        </div>
-        <img src="img/loader.gif" class="cargar">
-        <div class="respuesta" style="margin-top:0px !important; height:auto !Important"><i class="textomsg"></i></div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-raised btn-success">Aceptar</button></form>
       </div>
     </div>
   </div>
@@ -318,10 +320,49 @@
     obtener_categorias();
     contactar();
     comentar();
+    buscar();
 
     $("#informacion_publicaciones").hide();
     $(".cargar").hide();
     setTimeout(function(){QuitarLoading();}, 1000);
   });
 </script>
+
+        <script>
+            function hacerFoto(){
+                navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+            }
+            
+            function onSuccess(imageURI) {
+                var image = document.getElementById('fotoLocal');
+                image.src = imageURI;
+                subirImagen(imageURI)                             
+            }
+        
+            function onFail(message) {
+                alert('Failed because: ' + message);
+            }
+            
+            function subirImagen(fileURL) {
+            
+                var options = new FileUploadOptions();
+                options.fileKey = "imagen";
+                options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+
+                var ft = new FileTransfer();
+                ft.upload(fileURL, encodeURI(BASE_URL+'Subir_fotos/Subit'), uploadSuccess, uploadFail, options);
+            }
+
+            function uploadSuccess(r) {
+                alert("Code = " + r.responseCode+" Response = " + r.response+" Sent = " + r.bytesSent);
+                var image = document.getElementById('fotoServidor');
+                image.src = r.response;
+            }
+
+            function uploadFail(error) {
+                alert("An error has occurred: Code = " + error.code+ " upload error source " + error.source+" upload error target " + error.target);
+            }
+                                        
+        </script>
+        <script type="text/javascript" src="cordova.js"></script>
 </body>

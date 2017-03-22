@@ -50,6 +50,7 @@ function contactar() {
 	Ajax('Publicaciones/Registrar_sugerencias',datos,false,function(data){
 		if(data.res){
 			msg($('.respuesta'),data.dataObj,'complete');
+			document.getElementById("frmcontactar").reset();
 		}else{
 			msg($('.respuesta'),data.dataObj,'error');		
 	    }
@@ -65,6 +66,7 @@ function comentar() {
 		if(data.res){
 			msg($('.respuesta'),data.dataObj.msg,'complete');
 			$("#recibe_comentarios").html(data.dataObj.comentarios);
+			document.getElementById("frmcomentar").reset();
 		}else{
 			msg($('.respuesta'),data.dataObj.msg,'error');		
 	    }
@@ -76,11 +78,12 @@ function comentar() {
 function buscar() {
   $("#frmbuscar").submit(function(){
 	var datos = $("#frmbuscar").serialize();
-	Ajax('Publicaciones/Registrar_sugerencias',datos,false,function(data){
+	Ajax('Publicaciones/Buscar_publicaciones',datos,false,function(data){
 		if(data.res){
-			msg($('.respuesta'),data.dataObj,'complete');
+			$("#recibe_consulta").html(data.dataObj);
 		}else{
-			msg($('.respuesta'),data.dataObj,'error');		
+			msg($('.respuesta'),'No se encontro informacion','error');	
+			$("#recibe_consulta").html(data.dataObj);	
 	    }
 	 })
 	 return false;
