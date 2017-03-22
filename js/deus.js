@@ -123,57 +123,6 @@ function stringToDateHour(s) {
   return d;
 }
 
-
-// PLUGINS SUBIR ARCHIVOS 
-
-$(function(){
-$("#PLUGINS_CARGANDO").css({"display":"none","font-size":"200%"});
-$(".divAlertPLUGINS").hide(); 
-    $(".PLUGINS_UPLOAD").click(function(){
-        PLUGINS_ID = ($(this).attr("id"));
-        PLUGINS_URL = ($(this).attr("plugarchivo_subido"));
-        $("#ModalFile").modal("show");
-    });
-
-        $('#PLUGINSformulario_subir_archivo').submit(function(){
-
-          var formData = new FormData($(".PLUGINSformulario_subir_archivo")[0])
-
-            $.ajax({ 
-            url:BASE_URL + "services/Upload/subirArchivo",
-            type: "POST",
-            dataType: 'JSON',
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-
-            beforeSend: function(){
-            	$("#PLUGINS_CARGANDO").css({"display":"block","font-size":"200%"}); 
-            	$(".divAlertPLUGINS").hide();               
-            },
-            success: function(data){
-				
-				if(data.res){
-				      $("#"+PLUGINS_ID).attr("plugarchivo_subido", BASE_URL+data.dataObj);
-				       $("#PLUGINS_CARGANDO").css({"display":"none","font-size":"200%"});
-				       $(".divAlertPLUGINS").hide();    
-				       $("#ModalFile").modal("hide");				
-				   }else{
-					$(".divAlertPLUGINS").show(); 			
-					$("#PLUGINS_CARGANDO").css({"display":"none","font-size":"200%"});   			
-				}
-
-            },
-            error: function(data) {
-            	$(".divAlertPLUGINS").show(); 	
-                $("#PLUGINS_CARGANDO").css({"display":"none","font-size":"200%"});       
-            }
-            });
-            return false;
-            })
-})
-
 /*
 	ESPACIOS  EN BLANCO
 	Evalua si  una cadena tiene espacios en blanco
@@ -191,10 +140,6 @@ function QuitarLoading() {
 	$("#recibe_publicaciones").css("display", "block");
     $("#Dcargando").css("display", "none");
 }
-$(document).ready(function(){
-   setTimeout(function(){QuitarLoading();}, 1000);
-});
-
 
 /*
 	CLICK BUTTON
