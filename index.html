@@ -153,7 +153,7 @@
 
           <li class="active col-xs-3"><a href="#inicio" data-toggle="tab"><i class="material-icons">home</i></a></li>
           <li class="col-xs-3"><a href="#consultar" data-toggle="tab"><i class="material-icons">search</i></a></li>
-          <li class="col-xs-3"><a href="#publicaciones" data-toggle="tab"><i class="material-icons">info_outline</i></a></li>
+          <li class="col-xs-3"><a href="#publicaciones" data-toggle="tab"><i class="material-icons">file_upload</i></a></li>
           <li class="col-xs-3"><a href="#contactanos" data-toggle="tab"><i class="material-icons">contact_mail</i></a></li>
 
 </ul>
@@ -178,8 +178,9 @@
          <li class="active">Publicar</li>
       </ul>
     <div class="col-xs-12" style="padding:30px;padding-top:0px">
-      <form class="form-horizontal">
-          
+      <form class="form-horizontal" id="frmpublicar">
+          <input type="hidden" class="token" name="token">
+          <input type="hidden"  name="urlimagen" id="urlimagen">
            <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Categoria</label>
             <select class="form-control categoria" required id="categoriaP" name="categoria"></select>
@@ -188,38 +189,51 @@
 
           <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Titulo</label>
-          <input class="form-control" id="focusedInput2" type="text" required>
+          <input class="form-control" name="titulo" type="text" required max-length="35">
           <p class="help-block">Ingrese el titulo de la publicacion</p>
           </div>
 
           <div class="form-group label-floating">
           <label class="control-label" for="focusedInput2">Descripcion</label>
-           <textarea class="form-control" required></textarea>
+           <textarea class="form-control" name="descripcion" required></textarea>
           <p class="help-block">Ingrese una breve descripcion del problema</p>
-          </div>
-          
-          <div class="form-group is-fileinput is-empty">
-                <div class="col-md-12">
-                  <label for="inputFile">Seleccionar imagen de galeria</label>
-                  <input type="text" readonly="" class="form-control" placeholder="...">
-                  <input type="file" id="inputFile" accept="image/*">
-                </div>
           </div>
 
           <div class="form-group label-floating">
-          <label class="control-label" for="focusedInput2">Capturar imagen</label>
-             <input type="button" onclick="hacerFoto();"  value="Hacer Foto">
+          <label class="control-label" for="focusedInput2">Origen de imagen</label>
+            <select class="form-control" id="origen" onchange="Sorigen(this);">
+              <option value="1">Galeria</option>
+              <option value="2">Tomar foto</option>
+            </select>
+          <p class="help-block">¿De donde quieres seleccionar la imagen?</p>
+          </div>
+          
+          <div class="form-group is-fileinput is-empty" id="imagen_galeria">
+                <div class="col-md-12">
+                  <label for="inputFile">Seleccionar imagen de galeria</label>
+                  <input type="text" readonly="" class="form-control" placeholder="...">
+                  <input type="file"name="archivo" id="inputFile" accept="image/*">
+                </div>
+          </div>
+          
+          <div class="form-group is-fileinput is-empty" id="imagen_camara">
+          <div class="form-group label-floating">
+              <div class="col-xs-4"><input type="button" onclick="hacerFoto();" class="btn btn-raised btn-primary" value="Capturar imagen"></div>
+              <div class="col-xs-8" style="text-align:center"><img id="fotoServidor" src="" width="150" height="150"></div>
           </div>
 
-            <img id="fotoLocal" src="" width="100px" height="100px">
-            <img id="fotoServidor" src="" width="100px" height="100px">
+          <img id="fotoLocal" src="" width="100px" height="100px" style="display:none">
+          </div>
            
            <div class="col-xs-8"></div>
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-raised btn-success">Aceptar</button>
+              <button type="submit" class="btn btn-raised btn-success" id="aceptarP">Aceptar</button>
             </div>
 
-
+            <div class="progress" id="pa" style="border:none;width:100%;height:15pxheight: 25px;margin-bottom:0px;">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:0%" id="progreso"></div>
+           </div>
+           <div class="respuesta" style="margin-top:0px"><i class="textomsg"></i></div>
       </form>
     </div>
   </div>
@@ -321,11 +335,27 @@
     contactar();
     comentar();
     buscar();
-
+    publicar();
+    
+    $("#imagen_camara").hide();
     $("#informacion_publicaciones").hide();
     $(".cargar").hide();
+    $("#fotoServidor").hide();
+
+    
     setTimeout(function(){QuitarLoading();}, 1000);
   });
+  function Sorigen(This) {
+    $("#imagen_galeria").hide();
+    $("#imagen_camara").hide();
+    var v = This.value;
+    if (v==1) {
+      $("#imagen_galeria").show();
+      $("#urlimagen").val('');
+    }else{
+      $("#imagen_camara").show();
+    }
+  }
 </script>
 
         <script>
@@ -344,7 +374,9 @@
             }
             
             function subirImagen(fileURL) {
-            
+                $(".cargar").show();
+                $("#aceptarP").hide();
+                
                 var options = new FileUploadOptions();
                 options.fileKey = "imagen";
                 options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
@@ -354,13 +386,19 @@
             }
 
             function uploadSuccess(r) {
-                alert("Code = " + r.responseCode+" Response = " + r.response+" Sent = " + r.bytesSent);
+                //alert("Code = " + r.responseCode+" Response = " + r.response+" Sent = " + r.bytesSent);
+
                 var image = document.getElementById('fotoServidor');
                 image.src = r.response;
+                $("#urlimagen").val(r.response);
+                $(".cargar").hide();
+                $("#aceptarP").show();
+                $("#fotoServidor").show();
             }
 
             function uploadFail(error) {
-                alert("An error has occurred: Code = " + error.code+ " upload error source " + error.source+" upload error target " + error.target);
+               // alert("El erro al guardar la imagen: Codigo = " + error.code+ " error " + error.source+" in " + error.target);
+               msg($('.respuesta'),'Error al subir la imagen, intenta cargar una imagen desde galeria','error');   
             }
                                         
         </script>

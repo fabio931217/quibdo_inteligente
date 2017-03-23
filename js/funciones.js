@@ -43,6 +43,50 @@ function obtener_categorias() {
 	})
 }
 
+function publicar() {
+    $('#frmpublicar').submit(function(){
+
+          var formData = new FormData($("#frmpublicar")[0]);
+
+			$.ajax({
+					url:BASE_URL+'Publicaciones/Registrar_publicacion',
+					type: 'POST',
+					data: formData,
+					cache: false,
+					async: true,
+					contentType: false,
+					processData: false,
+		    beforeSend: function(){
+					$("#aceptarP").hide();
+					$("#pa").show();
+            },
+			success: function(data) {
+				   	if(data.res){
+                      msg($('.respuesta'),data.dataObj,'complete');
+                      obtenert_publicaciones();
+					}else{
+                      msg($('.respuesta'),data.dataObj,'error');
+					}
+					$("#aceptarP").show();			       
+			}, xhr: function(){
+						// get the native XmlHttpRequest object
+						var xhr = $.ajaxSettings.xhr() ;
+						// set the onprogress event handler
+						xhr.upload.onprogress = function(evt){ var width = evt.loaded/evt.total*100;
+                            var elem = document.getElementById("progreso"); 
+                            elem.style.width = width + '%'; 
+                            $("#progreso").html("Subiendo archivos... "+ parseInt(width) + '%');
+						 } ;
+						// set the onload event handler
+						xhr.upload.onload = function(){ $("#pa").hide(); $("#aceptarP").show(); } ;
+						// return the customized object
+						return xhr ;
+						// 50% Complete (info)
+            }
+		});
+      return false;
+    })
+}
 
 function contactar() {
   $("#frmcontactar").submit(function(){
