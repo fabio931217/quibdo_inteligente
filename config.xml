@@ -46,23 +46,23 @@
 		<preference name="LoadingDialog" value="," />
 		<preference name="LoadUrlTimeoutValue" value="null" />
 		<platform name="ios">
-		<icon src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\icon\android\logo_60_60.png" width="60" height="60" />
-		<icon src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\icon\android\logo_120.png" width="120" height="120" />
-		<icon src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\icon\android\logo_180.png" width="180" height="180" />
+		<icon src="quibdo_inteligente/res/icon/android/logo_60_60.png" width="60" height="60" />
+		<icon src="quibdo_inteligente/res/icon/android/logo_120.png" width="120" height="120" />
+		<icon src="quibdo_inteligente/res/icon/android/logo_180.png" width="180" height="180" />
 		</platform>
 		<platform name="android">
-		<splash src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\screen\android\240_320.png" qualifier="" />
-		<splash src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\screen\android\320_240.png" qualifier="" />
-		<splash src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\screen\android\320_480.png" qualifier="" />
-		<splash src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\screen\android\480_320.png" qualifier="" />
-		<splash src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\screen\android\480_800.png" qualifier="" />
-		<splash src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\screen\android\800_480.png" qualifier="" />
-		<splash src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\screen\android\720_180.png" qualifier="" />
-		<splash src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\screen\android\1280_720.png" qualifier="" />
-		<splash src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\screen\android\960_1600.png" qualifier="" />
-		<splash src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\screen\android\1600_960.png" qualifier="" />
-		<splash src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\screen\android\1280_1920.png" qualifier="" />
-		<splash src="file://C:\Users\Fabio\Desktop\quibdo_inteligente\res\screen\android\1920_1280.png" qualifier="" />
+		<splash src="quibdo_inteligente/res/screen/android/240_320.png" qualifier="" />
+		<splash src="quibdo_inteligente/res/screen/android/320_240.png" qualifier="" />
+		<splash src="quibdo_inteligente/res/screen/android/320_480.png" qualifier="" />
+		<splash src="quibdo_inteligente/res/screen/android/480_320.png" qualifier="" />
+		<splash src="quibdo_inteligente/res/screen/android/480_800.png" qualifier="" />
+		<splash src="quibdo_inteligente/res/screen/android/800_480.png" qualifier="" />
+		<splash src="quibdo_inteligente/res/screen/android/720_180.png" qualifier="" />
+		<splash src="quibdo_inteligente/res/screen/android/1280_720.png" qualifier="" />
+		<splash src="quibdo_inteligente/res/screen/android/960_1600.png" qualifier="" />
+		<splash src="quibdo_inteligente/res/screen/android/1600_960.png" qualifier="" />
+		<splash src="quibdo_inteligente/res/screen/android/1280_1920.png" qualifier="" />
+		<splash src="quibdo_inteligente/res/screen/android/1920_1280.png" qualifier="" />
 		</platform>
 		<platform name="winphone">
 		</platform>
