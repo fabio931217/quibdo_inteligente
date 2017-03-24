@@ -85,6 +85,7 @@
 </head>
 <body>
 
+
 <div class="header-panel shadow-z-2" id="menu" >
   <div class="container-fluid">
     <div class="row">
@@ -95,10 +96,10 @@
     z-index: 1;
     width: 100%;">
 
-          <li class="active col-xs-3"><a href="index.html?cargar=false"><i class="material-icons">home</i></a></li>
-          <li class="col-xs-3"><a href="buscar.html"><i class="material-icons">search</i></a></li>
-          <li class="col-xs-3"><a href="publicaciones.html"><i class="material-icons">file_upload</i></a></li>
-          <li class="col-xs-3"><a href="contactanos.html"><i class="material-icons">contact_mail</i></a></li>
+          <li class="active col-xs-3"><a href="#inicio" data-toggle="tab"><i class="material-icons">home</i></a></li>
+          <li class="col-xs-3"><a href="#consultar" data-toggle="tab"><i class="material-icons">search</i></a></li>
+          <li class="col-xs-3"><a href="#publicaciones" data-toggle="tab"><i class="material-icons">file_upload</i></a></li>
+          <li class="col-xs-3"><a href="#contactanos" data-toggle="tab"><i class="material-icons">contact_mail</i></a></li>
 
 </ul>
 <div id="myTabContent" class="tab-content" style="border-color: #009688;border-radius: 0px;">
@@ -116,6 +117,149 @@
 </div>
 
 
+  <!-- PUBLICACIONES -->
+  <div class="tab-pane fade" id="publicaciones">
+     <ul class="breadcrumb" style="margin-top:30px;border-radius:0px">
+         <li class="active">Publicar</li>
+      </ul>
+    <div class="col-xs-12" style="padding:30px;padding-top:0px">
+      <form class="form-horizontal" id="frmpublicar">
+          <input type="hidden" class="token" name="token">
+          <input type="hidden"  name="urlimagen" id="urlimagen">
+           <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Categoria</label>
+            <select class="form-control categoria" required id="categoriaP" name="categoria"></select>
+          <p class="help-block">Seleccione una categoria</p>
+          </div>
+
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Titulo</label>
+          <input class="form-control" name="titulo" type="text" required max-length="35">
+          <p class="help-block">Ingrese el titulo de la publicacion</p>
+          </div>
+
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Descripcion</label>
+           <textarea class="form-control" name="descripcion" required></textarea>
+          <p class="help-block">Ingrese una breve descripcion del problema</p>
+          </div>
+
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Origen de imagen</label>
+            <select class="form-control" id="origen" onchange="Sorigen(this);">
+              <option value="1">Galeria</option>
+              <option value="2">Tomar foto</option>
+            </select>
+          <p class="help-block">¿De donde quieres seleccionar la imagen?</p>
+          </div>
+          
+          <div class="form-group is-fileinput is-empty" id="imagen_galeria">
+                <div class="col-md-12">
+                  <label for="inputFile">Seleccionar imagen de galeria</label>
+                  <input type="text" readonly="" class="form-control" placeholder="...">
+                  <input type="file"name="archivo" id="inputFile" accept="image/*">
+                </div>
+          </div>
+          
+          <div class="form-group is-fileinput is-empty" id="imagen_camara">
+          <div class="form-group label-floating">
+              <div class="col-xs-6"><input type="button" onclick="hacerFoto();" class="btn btn-raised btn-primary" value="Capturar imagen"></div>
+              <div class="col-xs-6" style="text-align:center"><img id="fotoServidor" src="" width="100" height="100"></div>
+          </div>
+
+          <img id="fotoLocal" src="" width="100px" height="100px" style="display:none">
+          </div>
+           
+           <div class="col-xs-8"></div>
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-raised btn-success" id="aceptarP">Aceptar</button>
+            </div>
+
+            <div class="progress" id="pa" style="border:none;width:100%;height:15pxheight: 25px;margin-bottom:0px;">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:0%" id="progreso"></div>
+           </div>
+           <div class="cargar"><img src="img/loader.gif" > Subiendo...</div>
+           <div class="respuesta" style="margin-top:0px"><i class="textomsg"></i></div>
+      </form>
+    </div>
+  </div>
+
+
+
+  <div class="tab-pane fade" id="contactanos">
+        <ul class="breadcrumb" style="margin-top:30px;border-radius:0px">
+         <li class="active">Contactanos</li>
+        </ul>
+      <div class="col-xs-12" style="padding:30px;padding-top:0px">
+         <form class="form-horizontal" id="frmcontactar">         
+          <input type="hidden" class="token" name="token">
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Asunto</label>
+          <input class="form-control" id="focusedInput2" name="titulo" type="text" required>
+          <p class="help-block">¿Porque nos contactas?</p>
+          </div>
+
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Descripcion</label>
+           <textarea class="form-control" required name="descripcion" style="height:150px"></textarea>
+          <p class="help-block">Describenos el motivo.</p>
+          </div> 
+
+            <div class="col-xs-8"></div>
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-raised btn-success">Aceptar</button>
+            </div>
+             
+         </form>
+         <img src="img/loader.gif" class="cargar">
+         <div class="respuesta" style="margin-top:10px"><i class="textomsg"></i></div>
+      </div>
+  </div>
+
+
+    <div class="tab-pane fade" id="consultar">
+        <ul class="breadcrumb" style="margin-top:30px;border-radius:0px">
+         <li class="active">Consultar</li>
+        </ul>
+      <div class="col-xs-12" style="padding:30px;padding-top:0px">
+
+         <form class="form-horizontal" id="frmbuscar">         
+           <input type="hidden" class="token" name="token">
+           <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Categoria</label>
+           <select class="form-control categoria" id="categoriaB" name="categoria">
+           </select>
+          <p class="help-block">Seleccione una categoria</p>
+          </div>
+
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Fecha inicial</label>
+           <input class="form-control" type="date" name="fecha_inicial">
+          <p class="help-block">Ingresa la fecha inicial de la consulta.</p>
+          </div>
+
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Fecha final</label>
+           <input class="form-control" type="date" name="fecha_final">
+          <p class="help-block">Ingresa la fecha final de la consulta.</p>
+          </div> 
+
+            <div class="col-xs-8"></div>
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-raised btn-success">Buscar</button>
+            </div>
+             
+         </form>
+
+         <div id="recibe_consulta"> </div>
+
+
+         <img src="img/loader.gif" class="cargar">
+         <div class="respuesta" style="margin-top:10px"><i class="textomsg"></i></div>
+
+      </div>
+  </div>
+
 
 
 
@@ -132,14 +276,13 @@
   $(function () {
     $.material.init();
     $(".token").val(TOKEN);
-   
-     var IDURL = getUrlVars()['cargar'];
-     if (IDURL=='false') {}else{
-     
-     }
     obtenert_publicaciones();
-     
-
+    obtener_categorias();
+    contactar();
+    comentar();
+    buscar();
+    publicar();
+    
     $("#pa").hide();
     $("#imagen_camara").hide();
     $("#informacion_publicaciones").hide();
@@ -147,7 +290,7 @@
     $("#fotoServidor").hide();
 
     
-    //setTimeout(function(){QuitarLoading();}, 1000);
+    setTimeout(function(){QuitarLoading();}, 1000);
   });
   function Sorigen(This) {
     $("#imagen_galeria").hide();

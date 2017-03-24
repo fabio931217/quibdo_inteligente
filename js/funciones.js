@@ -67,7 +67,8 @@ function publicar() {
 					}else{
                       msg($('.respuesta'),data.dataObj,'error');
 					}
-					$("#aceptarP").show();			       
+					$("#aceptarP").show();
+					document.getElementById("frmpublicar").reset();		       
 			}, xhr: function(){
 						// get the native XmlHttpRequest object
 						var xhr = $.ajaxSettings.xhr() ;
