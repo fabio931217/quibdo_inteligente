@@ -307,7 +307,16 @@
 
         <script>
             function hacerFoto(){
-                navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+                navigator.camera.getPicture(onSuccess, onFail, 
+                  {  quality: 50, 
+                     destinationType: Camera.DestinationType.FILE_URI,
+                     allowEdit : true,
+                     encodingType: Camera.EncodingType.JPEG,
+                     targetWidth: 400,
+                     targetHeight: 300,
+                     popoverOptions: CameraPopoverOptions,
+                     saveToPhotoAlbum: false
+                });
             }
             
             function onSuccess(imageURI) {

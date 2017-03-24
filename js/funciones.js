@@ -64,11 +64,12 @@ function publicar() {
 				   	if(data.res){
                       msg($('.respuesta'),data.dataObj,'complete');
                       obtenert_publicaciones();
+                      document.getElementById("frmpublicar").reset();	
 					}else{
                       msg($('.respuesta'),data.dataObj,'error');
 					}
 					$("#aceptarP").show();
-					document.getElementById("frmpublicar").reset();		       
+
 			}, xhr: function(){
 						// get the native XmlHttpRequest object
 						var xhr = $.ajaxSettings.xhr() ;
