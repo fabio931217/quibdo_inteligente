@@ -85,46 +85,57 @@
 </head>
 <body>
 
-<div class="header-panel shadow-z-2" id="menu" >
-  <div class="container-fluid">
+
+<div class="container-fluid" id="informacion_publicaciones">
     <div class="row">
       <div class="col-xs-12" style="padding:0px">
-        
-<ul class="nav nav-tabs" style="margin-bottom: 15px;top: 0px;
-    position: fixed;
-    z-index: 1;
-    width: 100%;">
+          <div class="panel panel-primary" style="border-color: white;border-radius: 0px;">
+            <div class="panel-heading" style="height:40px;top: 0px;position: fixed;z-index: 1;width: 100%;">
+              <div class="col-xs-12" style="padding-top:2px;padding-left:10px;padding-right:5px;">
+                <h3 class="panel-title" id="recibe_titulo"></h3>
+              </div>
+            </div>
+            <div class="panel-body"><br><br>
+              <ul class="breadcrumb" style="margin-top:0px !Important;margin-bottom:5px !Important;border-radius:0px">
+                 <li class="active" id="recibe_fecha" style="font-size:12px"></li>
+              </ul>
+                <div class="col-xs-12" style="padding:0px" id="recibe_foto">
+                  
+                </div>
 
-          <li class="active col-xs-3"><a href="index.html?cargar=false"><i class="material-icons">home</i></a></li>
-          <li class="col-xs-3"><a href="buscar.html"><i class="material-icons">search</i></a></li>
-          <li class="col-xs-3"><a href="publicaciones.html"><i class="material-icons">file_upload</i></a></li>
-          <li class="col-xs-3"><a href="contactanos.html"><i class="material-icons">contact_mail</i></a></li>
-
-</ul>
-<div id="myTabContent" class="tab-content" style="border-color: #009688;border-radius: 0px;">
-
-
- <div class="col-xs-12" style="padding:60px;display:block" id="Dcargando">
-  <img src="img/loader.gif">
-</div>
-
-<div class="tab-pane fade active in" id="inicio" >
-    <br><br><br>
-<div class="list-group" id="recibe_publicaciones" style="display:none">
-
-</div>
-</div>
+                 <div class="col-xs-12" style="margin-top:5px;margin-bottom:5px;border-bottom:1px solid #009688" >
+                  <p id="recibe_contenido" style="text-align: justify;">
+                  </p>
+                </div>
+                
+                
+                <div class="list-group list-group-no-icon" id="recibe_comentarios" style="    padding-bottom: 40px;">
+                </div>
 
 
+            </div>
+            <div class="panel-footer" style="position: fixed;bottom: 0px;">
+      
+       <form id="frmcomentar">
+         <input type="hidden" class="token" name="token">
+         <input type="hidden" id="id_blog" name="id_blog"> 
+          <div class="form-group label-floating is-empty" style="margin:0px !Important">
+            <label class="control-label" for="addon2">Agrega tu comentario</label>
+            <div class="input-group">
+               <textarea class="form-control" required style="height:auto" name="descripcion"></textarea>
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-fab btn-fab-mini" style="border-radius:100%">
+                  <i class="material-icons">send</i>
+                <div class="ripple-container"></div></button>
+              </span>
+            </div>
+          </div>
+        </form>
 
-
-
-</div>
-
-
+            </div>
+          </div>
       </div>
     </div>
-  </div>
 </div>
 
 
@@ -132,17 +143,14 @@
   $(function () {
     $.material.init();
     $(".token").val(TOKEN);
-   
-     var IDURL = getUrlVars()['cargar'];
-     if (IDURL=='false') {}else{
-     
-     }
-    obtenert_publicaciones();
-     
+    comentar();
+
+    var IDURL = getUrlVars()['id'];
+    ver(IDURL);
 
     $("#pa").hide();
     $("#imagen_camara").hide();
-    $("#informacion_publicaciones").hide();
+    //$("#informacion_publicaciones").hide();
     $(".cargar").hide();
     $("#fotoServidor").hide();
 

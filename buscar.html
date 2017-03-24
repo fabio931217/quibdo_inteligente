@@ -85,6 +85,7 @@
 </head>
 <body>
 
+
 <div class="header-panel shadow-z-2" id="menu" >
   <div class="container-fluid">
     <div class="row">
@@ -95,8 +96,8 @@
     z-index: 1;
     width: 100%;">
 
-          <li class="active col-xs-3"><a href="index.html?cargar=false"><i class="material-icons">home</i></a></li>
-          <li class="col-xs-3"><a href="buscar.html"><i class="material-icons">search</i></a></li>
+          <li class="col-xs-3"><a href="index.html?cargar=false"><i class="material-icons">home</i></a></li>
+          <li class="active  col-xs-3"><a href="buscar.html"><i class="material-icons">search</i></a></li>
           <li class="col-xs-3"><a href="publicaciones.html"><i class="material-icons">file_upload</i></a></li>
           <li class="col-xs-3"><a href="contactanos.html"><i class="material-icons">contact_mail</i></a></li>
 
@@ -104,17 +105,48 @@
 <div id="myTabContent" class="tab-content" style="border-color: #009688;border-radius: 0px;">
 
 
- <div class="col-xs-12" style="padding:60px;display:block" id="Dcargando">
-  <img src="img/loader.gif">
-</div>
+    <div class="tab-pane fade  active in" id="consultar">
+        <ul class="breadcrumb" style="margin-top:30px;border-radius:0px">
+         <li class="active">Consultar</li>
+        </ul>
+      <div class="col-xs-12" style="padding:30px;padding-top:0px">
 
-<div class="tab-pane fade active in" id="inicio" >
-    <br><br><br>
-<div class="list-group" id="recibe_publicaciones" style="display:none">
+         <form class="form-horizontal" id="frmbuscar">         
+           <input type="hidden" class="token" name="token">
+           <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Categoria</label>
+           <select class="form-control categoria" id="categoriaB" name="categoria">
+           </select>
+          <p class="help-block">Seleccione una categoria</p>
+          </div>
 
-</div>
-</div>
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Fecha inicial</label>
+           <input class="form-control" type="date" name="fecha_inicial">
+          <p class="help-block">Ingresa la fecha inicial de la consulta.</p>
+          </div>
 
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Fecha final</label>
+           <input class="form-control" type="date" name="fecha_final">
+          <p class="help-block">Ingresa la fecha final de la consulta.</p>
+          </div> 
+
+            <div class="col-xs-8"></div>
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-raised btn-success">Buscar</button>
+            </div>
+             
+         </form>
+
+         <div id="recibe_consulta"> </div>
+
+
+         <img src="img/loader.gif" class="cargar">
+         <div class="respuesta" style="margin-top:10px"><i class="textomsg"></i></div>
+
+      </div>
+  </div>
 
 
 
@@ -132,22 +164,14 @@
   $(function () {
     $.material.init();
     $(".token").val(TOKEN);
-   
-     var IDURL = getUrlVars()['cargar'];
-     if (IDURL=='false') {}else{
-     
-     }
-    obtenert_publicaciones();
-     
+    obtener_categorias();
+    buscar();
 
     $("#pa").hide();
     $("#imagen_camara").hide();
     $("#informacion_publicaciones").hide();
     $(".cargar").hide();
     $("#fotoServidor").hide();
-
-    
-    //setTimeout(function(){QuitarLoading();}, 1000);
   });
   function Sorigen(This) {
     $("#imagen_galeria").hide();
@@ -161,50 +185,4 @@
     }
   }
 </script>
-
-        <script>
-            function hacerFoto(){
-                navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
-            }
-            
-            function onSuccess(imageURI) {
-                var image = document.getElementById('fotoLocal');
-                image.src = imageURI;
-                subirImagen(imageURI)                             
-            }
-        
-            function onFail(message) {
-                alert('Failed because: ' + message);
-            }
-            
-            function subirImagen(fileURL) {
-                $(".cargar").show();
-                $("#aceptarP").hide();
-                
-                var options = new FileUploadOptions();
-                options.fileKey = "imagen";
-                options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
-
-                var ft = new FileTransfer();
-                ft.upload(fileURL, encodeURI(BASE_URL+'Subir_fotos/Subit'), uploadSuccess, uploadFail, options);
-            }
-
-            function uploadSuccess(r) {
-                //alert("Code = " + r.responseCode+" Response = " + r.response+" Sent = " + r.bytesSent);
-
-                var image = document.getElementById('fotoServidor');
-                image.src = r.response;
-                $("#urlimagen").val(r.response);
-                $(".cargar").hide();
-                $("#aceptarP").show();
-                $("#fotoServidor").show();
-            }
-
-            function uploadFail(error) {
-               // alert("El erro al guardar la imagen: Codigo = " + error.code+ " error " + error.source+" in " + error.target);
-               msg($('.respuesta'),'Error al subir la imagen, intenta cargar una imagen desde galeria','error');   
-            }
-                                        
-        </script>
-        <script type="text/javascript" src="cordova.js"></script>
 </body>

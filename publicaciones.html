@@ -85,6 +85,9 @@
 </head>
 <body>
 
+
+
+
 <div class="header-panel shadow-z-2" id="menu" >
   <div class="container-fluid">
     <div class="row">
@@ -95,26 +98,81 @@
     z-index: 1;
     width: 100%;">
 
-          <li class="active col-xs-3"><a href="index.html?cargar=false"><i class="material-icons">home</i></a></li>
+          <li class="col-xs-3"><a href="index.html?cargar=false"><i class="material-icons">home</i></a></li>
           <li class="col-xs-3"><a href="buscar.html"><i class="material-icons">search</i></a></li>
-          <li class="col-xs-3"><a href="publicaciones.html"><i class="material-icons">file_upload</i></a></li>
+          <li class="active col-xs-3"><a href="publicaciones.html"><i class="material-icons">file_upload</i></a></li>
           <li class="col-xs-3"><a href="contactanos.html"><i class="material-icons">contact_mail</i></a></li>
 
 </ul>
 <div id="myTabContent" class="tab-content" style="border-color: #009688;border-radius: 0px;">
 
 
- <div class="col-xs-12" style="padding:60px;display:block" id="Dcargando">
-  <img src="img/loader.gif">
-</div>
+  <!-- PUBLICACIONES -->
+  <div class="tab-pane fade active in" id="publicaciones">
+     <ul class="breadcrumb" style="margin-top:30px;border-radius:0px">
+         <li class="active">Publicar</li>
+      </ul>
+    <div class="col-xs-12" style="padding:30px;padding-top:0px">
+      <form class="form-horizontal" id="frmpublicar">
+          <input type="hidden" class="token" name="token">
+          <input type="hidden"  name="urlimagen" id="urlimagen">
+           <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Categoria</label>
+            <select class="form-control categoria" required id="categoriaP" name="categoria"></select>
+          <p class="help-block">Seleccione una categoria</p>
+          </div>
 
-<div class="tab-pane fade active in" id="inicio" >
-    <br><br><br>
-<div class="list-group" id="recibe_publicaciones" style="display:none">
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Titulo</label>
+          <input class="form-control" name="titulo" type="text" required max-length="35">
+          <p class="help-block">Ingrese el titulo de la publicacion</p>
+          </div>
 
-</div>
-</div>
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Descripcion</label>
+           <textarea class="form-control" name="descripcion" required></textarea>
+          <p class="help-block">Ingrese una breve descripcion del problema</p>
+          </div>
 
+          <div class="form-group label-floating">
+          <label class="control-label" for="focusedInput2">Origen de imagen</label>
+            <select class="form-control" id="origen" onchange="Sorigen(this);">
+              <option value="1">Galeria</option>
+              <option value="2">Tomar foto</option>
+            </select>
+          <p class="help-block">¿De donde quieres seleccionar la imagen?</p>
+          </div>
+          
+          <div class="form-group is-fileinput is-empty" id="imagen_galeria">
+                <div class="col-md-12">
+                  <label for="inputFile">Seleccionar imagen de galeria</label>
+                  <input type="text" readonly="" class="form-control" placeholder="...">
+                  <input type="file"name="archivo" id="inputFile" accept="image/*">
+                </div>
+          </div>
+          
+          <div class="form-group is-fileinput is-empty" id="imagen_camara">
+          <div class="form-group label-floating">
+              <div class="col-xs-6"><input type="button" onclick="hacerFoto();" class="btn btn-raised btn-primary" value="Capturar imagen"></div>
+              <div class="col-xs-6" style="text-align:center"><img id="fotoServidor" src="" width="100" height="100"></div>
+          </div>
+
+          <img id="fotoLocal" src="" width="100px" height="100px" style="display:none">
+          </div>
+           
+           <div class="col-xs-8"></div>
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-raised btn-success" id="aceptarP">Aceptar</button>
+            </div>
+
+            <div class="progress" id="pa" style="border:none;width:100%;height:15pxheight: 25px;margin-bottom:0px;">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:0%" id="progreso"></div>
+           </div>
+           <img src="img/loader.gif" class="cargar">
+           <div class="respuesta" style="margin-top:0px"><i class="textomsg"></i></div>
+      </form>
+    </div>
+  </div>
 
 
 
@@ -132,13 +190,8 @@
   $(function () {
     $.material.init();
     $(".token").val(TOKEN);
-   
-     var IDURL = getUrlVars()['cargar'];
-     if (IDURL=='false') {}else{
-     
-     }
-    obtenert_publicaciones();
-     
+    obtener_categorias();
+    publicar();
 
     $("#pa").hide();
     $("#imagen_camara").hide();
