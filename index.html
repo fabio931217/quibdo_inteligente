@@ -93,7 +93,7 @@
   background:#F44336;
   right:0;
   bottom:0;
-  position:absolute;
+  position:fixed;
   margin-right:16px;
   margin-bottom:16px;
   border:none;
@@ -130,10 +130,10 @@ span{
     z-index: 1;
     width: 100%;">
 
-          <li class="active col-xs-3"><a href="#inicio" data-toggle="tab"><i class="material-icons">home</i></a></li>
-          <li class="col-xs-3"><a href="#consultar" data-toggle="tab"><i class="material-icons">search</i></a></li>
-          <li class="col-xs-3"><a href="#publicaciones" data-toggle="tab"><i class="material-icons">file_upload</i></a></li>
-          <li class="col-xs-3"><a href="#contactanos" data-toggle="tab"><i class="material-icons">contact_mail</i></a></li>
+          <li class="active col-xs-3" onclick="ver_boton()"><a href="#inicio" data-toggle="tab"><i class="material-icons">home</i></a></li>
+          <li class="col-xs-3" onclick="ocultar_boton()"><a href="#consultar" data-toggle="tab"><i class="material-icons">search</i></a></li>
+          <li class="col-xs-3" onclick="ocultar_boton()"><a href="#publicaciones" data-toggle="tab"><i class="material-icons">file_upload</i></a></li>
+          <li class="col-xs-3" onclick="ocultar_boton()"><a href="#contactanos" data-toggle="tab"><i class="material-icons">contact_mail</i></a></li>
 
 </ul>
 <div id="myTabContent" class="tab-content" style="border-color: #009688;border-radius: 0px;">
@@ -146,13 +146,10 @@ span{
 <div class="tab-pane fade active in" id="inicio" style="min-height: 640px;" >
     <br><br><br>
 <div class="list-group" id="recibe_publicaciones" style="display:none">
-
+   
+  
 </div>
-<div class="contenedor">
-<button class="botonF1" onclick="obtenert_publicaciones();">
-  <span><i class="material-icons">autorenew</i></span>
-</button>
- </div>
+
 </div>
 
 
@@ -309,7 +306,11 @@ span{
     </div>
   </div>
 </div>
-
+<div class="contenedor" id="contenedor">
+<button class="botonF1" onclick="obtenert_publicaciones();">
+  <span><i class="material-icons">autorenew</i></span>
+</button>
+ </div>
 
 
 
@@ -343,6 +344,12 @@ span{
     }else{
       $("#imagen_camara").show();
     }
+  }
+  function ocultar_boton() {
+    $("#contenedor").hide();
+  }
+  function ver_boton() {
+    $("#contenedor").show();
   }
 </script>
 
